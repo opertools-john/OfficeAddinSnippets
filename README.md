@@ -8,4 +8,4 @@
 - NewButtonControl has instructions on how to add a new button into a ribbon group or menu control
 - NewFunctionControl is a subset of a button control specifically geared toward adding a button control to run a JS/TS function
 
-There may be some errors and confusing bits, so feel free to submit feedback and ask questions. Feel free to give tips on how to use github as well.
+Feel free to submit issues with questions and comments.
