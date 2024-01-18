@@ -1,5 +1,7 @@
 I believe this is the structure of the font JSON, but there isn't really documentation on what is and isn't allowable in terms of setting properties via Document.importStylesFromJson
 
+It will probably take some testing to determine what is and isn't possible
+
 Style: Word.Style object
 	baseStyle: string
 	font: Word.Font object
