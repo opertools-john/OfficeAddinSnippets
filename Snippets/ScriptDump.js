@@ -28,7 +28,9 @@ Office.onReady((info) => {
 
 async function setStyleSectionHeader(event) {
   await Word.run(async (context) => {
-    //Get selected range and expand it to include the whole first and last paragraphs
+    // Get selected range and expand it to include the whole first and last paragraphs
+    // This lets a user select multiple paragraphs and change the style of the first, last, and everything between all at once.
+    // Would probably be best suited as a general use function that gets passed a style name from the event-based function
     var selection = context.document.getSelection().getRange();
     var firstParagraph = selection.paragraphs.getFirstOrNullObject();
     var lastParagraph = selection.paragraphs.getLastOrNullObject();
@@ -39,11 +41,15 @@ async function setStyleSectionHeader(event) {
     updatedSelection.paragraphs.load();
     await context.sync();
 
-    //console.log(updatedSelection.text)
+    // For testing:
+    //console.log(updatedSelection.text) 
+
+    // Set the style
     updatedSelection.style = "test2";
     await context.sync();
 
-    //Move the cursor to the end of the selection
+    // Move the cursor to the beginning of the next paragraph
+    // This lets the user sequentially format paragraphs with just one mouse click per paragraph
     updatedSelection.paragraphs.getLast().getNextOrNullObject().select("Start");
 
   });
@@ -101,6 +107,7 @@ async function addStyle() {
   });
 }
 
+// Same as function setStyleSectionHeader
 async function applyStyle() {
   await Word.run(async (context) => {
     //Get selected range and expand it to include the whole first and last paragraphs
@@ -121,7 +128,7 @@ async function applyStyle() {
 
     await context.sync();
 
-    //Move the cursor to the end of the selection
+    //Move the cursor to the beginning of the next paragraph
     updatedSelection.paragraphs.getLast().getNextOrNullObject().select("Start");
   });
 }
@@ -140,6 +147,9 @@ async function getCount() {
 // Import styles to add
 import { stylesToAdd } from "./styleList.js";
 
+
+// Since the writing of this function, requirement set 1.6 has been released
+// It includes a new importStylesFromJson method that is probably a lot simpler and more powerful
 function addStyleList() {
   //define styles to be added
 
@@ -194,7 +204,8 @@ function addStyleList() {
   }
 } 
 
-
+// This creates a Content Control and lets you prevent the user from editing or deleting it. 
+// Protected portions of the document (header, footer, table of contents, etc) can be wrapped in a content control
 async function insertControl() {
   await Word.run(async (context) => {
     const range = context.document.getSelection();  
@@ -211,7 +222,8 @@ async function insertControl() {
 
 
 
-
+// Lets you find a particular content control. 
+// You can then unprotect it, update the contents, and protect it again
 async function findContentControls() {
   await Word.run(async (context) => {
 
