@@ -1,0 +1,42 @@
+I believe this is the structure of the font JSON, but there isn't really documentation on what is and isn't allowable in terms of setting properties via Document.importStylesFromJson
+
+Style: Word.Style object
+	baseStyle: string
+	font: Word.Font object
+		bold: bool
+		color: string
+		doubleStrikeThrough: bool
+		highlightColor: string
+		italic: bool
+		name: string
+		size: number
+		strikeThrough: bool
+		subscript: bool
+		superscript: bool
+		underline: bool
+	nameLocal: string
+	nextParagraphStyle
+	paragraphFormat: Word.ParagraphFormat object
+		alignment: Word.Alignment enum
+		firstLineIndent: number
+		keepTogether: bool
+		keepWithNext: bool
+		leftIndent: number
+		lineSpacing: number
+		lineUnitAfter: number
+		lineUnitBefore: number
+		mirrorIndents: bool
+		outlineLevel: Word.OutlineLevel enum
+		rightIndent: number
+		spaceAfter: number
+		spaceBefore: number
+		widowControl: bool
+	priority: number
+	shading: Word.Shading object
+		backgroundPatternColor: string
+		foregroundPatternColor: string
+		texture: Word.ShadingTextureType enum
+	tableStyle: Word.TableStyle object
+	type: Word.StyleType enum
+	unhideWhenUsed: bool
+	visibility: bool
